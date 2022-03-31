@@ -1,9 +1,22 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ilustrationImg from '../assets/images/illustration.svg';
+import { auth, firebase } from '../services/firebase';
 import logoImg from '../assets/images/logo.svg';
 import gooogleIconImg from '../assets/images/google-icon.svg';
 import '../styles/auth.scss';
+import { Button } from '../components/Button';
 
 export function Home() {
+  const navigate = useNavigate();
+
+  function handleCreateRoom() {
+      navigate('/rooms/new')
+
+    })
+
+  }
+
   return(
     <div id="page-auth">
       <aside>
@@ -12,21 +25,22 @@ export function Home() {
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
       <main>
+        <h1>{value}</h1>
         <div className="main-content">
           <img src={logoImg} alt="Letmeask" />
-          <button>
+          <button className="create-room" onClick={handleCreateRoom}>
             <img src={gooogleIconImg} alt="Logo do google" />
             Crie sua sala com o Google
           </button>
-          <div>Ou entre em uma sala</div>
+          <div className="separator">Ou entre em uma sala</div>
           <form action="">
             <input 
               type="text"
               placeholder="Digite o código da sala" 
             />
-            <button type="submit">
+            <Button type="submit">
               Entrar na sala
-            </button>
+            </Button>
           </form>
         </div>
       </main>
